@@ -1,12 +1,19 @@
 const initialState = {
-  menu: [],
+  bestsellers: [],
+  coffee: [],
+  goods: [],
+  loaded: false,
+  error: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "VALUE":
-      console.log("action work");
-      return state;
+    case "BESTSELLERS_LOAD":
+      console.log(action.payload);
+      return {
+        ...state,
+        bestsellers: action.payload,
+      };
     default:
       return state;
   }

@@ -5,7 +5,9 @@ const Hoc = () => (View) => {
   return (props) => {
     return (
       <ShopContext.Consumer>
-        {(service) => <View {...props} service={service} />}
+        {(Service) => {
+          return <View {...props} service={Service} />;
+        }}
       </ShopContext.Consumer>
     );
   };

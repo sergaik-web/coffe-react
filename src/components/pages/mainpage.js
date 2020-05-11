@@ -5,8 +5,11 @@ import beanslogo from "./logo/Beans_logo.svg";
 import beanslogodarck from "./logo/Beans_logo_dark.svg";
 import Header from "../header";
 import Footer from "../footer";
+import Hoc from "../hoc";
+import { best } from "../../actions/actions";
+import { connect } from "react-redux";
 
-export default class MainPage extends React.Component {
+class MainPage extends React.Component {
   render() {
     return (
       <>
@@ -108,3 +111,13 @@ export default class MainPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    best: state.bestsellers,
+  };
+};
+
+const mapDispatchToProps = { best };
+
+export default Hoc()(connect(mapStateToProps, mapDispatchToProps)(MainPage));
