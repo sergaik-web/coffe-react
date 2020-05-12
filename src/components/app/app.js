@@ -1,7 +1,7 @@
 import React from "react";
-import MainPage from "../pages/mainpage";
-import CoffePage from "../pages/coffepage";
-import ItemPage from "../pages/itempage";
+import MainPage from "../pages/mainpage/mainpage";
+import CoffePage from "../pages/coffepage/coffepage";
+import PleasurePage from "../pages/pleasurepage/pleasurepage";
 import { Switch, Route } from "react-router-dom";
 import "./app.sass";
 
@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <Route path="/" component={MainPage} exact />
         <Route path="/coffepage" component={CoffePage} />
-        <Route path="/itempage" component={ItemPage} />
+        <Route path="/pleasurepage" component={PleasurePage} />
       </Switch>
     </>
   );

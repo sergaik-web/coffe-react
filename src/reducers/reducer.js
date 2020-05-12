@@ -9,11 +9,23 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "BESTSELLERS_LOAD":
-      console.log(action.payload);
       return {
         ...state,
         bestsellers: action.payload,
       };
+
+    case "COFFEE_LOAD":
+      return {
+        ...state,
+        coffee: action.payload,
+      };
+
+    case "GOODS_LOAD":
+      return {
+        ...state,
+        goods: action.payload,
+      };
+
     default:
       return state;
   }

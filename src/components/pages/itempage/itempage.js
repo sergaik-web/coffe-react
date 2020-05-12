@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../header";
-import Footer from "../footer";
-import coffeGirl from "./img/coffee_girl.jpg";
-import beanslogodarck from "./logo/Beans_logo_dark.svg";
+import Header from "../../header";
+import Footer from "../../footer";
+import coffeGirl from "../img/coffee_girl.jpg";
+import beanslogodarck from "../logo/Beans_logo_dark.svg";
 
 export default class ItemPage extends React.Component {
   render() {

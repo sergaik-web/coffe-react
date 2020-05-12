@@ -12,4 +12,12 @@ export default class Services {
   async getBestsellers() {
     return await this.getDataDb("/bestsellers");
   }
+
+  async getCoffee() {
+    return await this.getDataDb("/coffee");
+  }
+
+  async getGoods() {
+    return await this.getDataDb("/goods");
+  }
 }

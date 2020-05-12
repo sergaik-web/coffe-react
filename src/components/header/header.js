@@ -17,7 +17,7 @@ export default class Header extends React.Component {
             <Link to={"/coffepage"}>Our coffee</Link>
           </li>
           <li className="header__item">
-            <Link to={"/itempage"}>For your pleasure</Link>
+            <Link to={"/pleasurepage"}>For your pleasure</Link>
           </li>
         </ul>
       </header>

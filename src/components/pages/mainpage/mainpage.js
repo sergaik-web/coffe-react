@@ -1,16 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./sass/mainpage.sass";
-import beanslogo from "./logo/Beans_logo.svg";
-import beanslogodarck from "./logo/Beans_logo_dark.svg";
-import Header from "../header";
-import Footer from "../footer";
-import Hoc from "../hoc";
-import { best } from "../../actions/actions";
+import Header from "../../header";
+import Footer from "../../footer";
+import Hoc from "../../hoc";
+import { best } from "../../../actions/actions";
 import { connect } from "react-redux";
+import CoffeeItems from "../coffee-item";
+import "./mainpage.sass";
+import beanslogo from "../logo/Beans_logo.svg";
+import beanslogodarck from "../logo/Beans_logo_dark.svg";
 
 class MainPage extends React.Component {
+  componentDidMount() {
+    const { service } = this.props;
+    service.getBestsellers().then((res) => {
+      this.props.best(res);
+    });
+  }
+
+  renderBestsItems(arr) {
+    console.log(arr);
+    return arr.map((item, index) => {
+      return <CoffeeItems key={index} item={item} />;
+    });
+  }
+
   render() {
+    const bestsellersItem = this.renderBestsItems(this.props.bestsellersData);
     return (
       <>
         <div className="preview">
@@ -70,38 +86,7 @@ class MainPage extends React.Component {
             <div className="title">Our best</div>
             <div className="row">
               <div className="col-lg-10 offset-lg-1">
-                <div className="best__wrapper">
-                  <div className="best__item">
-                    <img
-                      src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg"
-                      alt="coffee"
-                    />
-                    <div className="best__item-title">
-                      Solimo Coffee Beans 2kg
-                    </div>
-                    <div className="best__item-price">10.73$</div>
-                  </div>
-                  <div className="best__item">
-                    <img
-                      src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg"
-                      alt="coffee"
-                    />
-                    <div className="best__item-title">
-                      Presto Coffee Beans 1kg
-                    </div>
-                    <div className="best__item-price">15.99$</div>
-                  </div>
-                  <div className="best__item">
-                    <img
-                      src="https://www.sciencenews.org/sites/default/files/main/articles/100315_coffee_opener_NEW_0.jpg"
-                      alt="coffee"
-                    />
-                    <div className="best__item-title">
-                      AROMISTICO Coffee 1kg
-                    </div>
-                    <div className="best__item-price">6.99$</div>
-                  </div>
-                </div>
+                <div className="best__wrapper">{bestsellersItem}</div>
               </div>
             </div>
           </div>
@@ -114,7 +99,7 @@ class MainPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    best: state.bestsellers,
+    bestsellersData: state.bestsellers,
   };
 };
 
