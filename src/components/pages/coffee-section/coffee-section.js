@@ -3,8 +3,9 @@ import img from "../img/coffee_girl.jpg";
 import AboutPanel from "../../about-panel";
 import SearchPanel from "../../search-panel";
 import CoffeeItems from "../coffee-item";
+import { connect } from "react-redux";
 
-export default class CoffeeSection extends React.Component {
+class CoffeeSection extends React.Component {
   renderCoffeeItems = (arr) => {
     return arr.map((item, index) => {
       return <CoffeeItems key={index} item={item} />;
@@ -48,3 +49,11 @@ export default class CoffeeSection extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    coffeeData: state.coffee,
+  };
+};
+
+export default connect(mapStateToProps)(CoffeeSection);

@@ -5,6 +5,8 @@ import CoffeeSection from "../coffee-section";
 import { connect } from "react-redux";
 import { coffee } from "../../../actions/actions";
 import Hoc from "../../hoc";
+import { Switch, Route } from "react-router-dom";
+import ItemPage from "../itempage/itempage";
 
 import "./coffeepage.sass";
 
@@ -17,8 +19,11 @@ class CoffeePage extends React.Component {
   render() {
     return (
       <>
-        <Header mainClassName={"banner"} mainTitle={'Our Coffee'}/>
-        <CoffeeSection coffeeData={this.props.coffeeData}/>
+        <Header mainClassName={"banner"} mainTitle={"Our Coffee"} />
+        <Switch>
+          <Route path={"/coffepage/"} exact component={CoffeeSection} />
+          <Route path={"/coffepage/1"} render={() => <ItemPage />} />
+        </Switch>
         <Footer />
       </>
     );

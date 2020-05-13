@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../../header";
-import Footer from "../../footer";
 import coffeGirl from "../img/coffee_girl.jpg";
 import beanslogodarck from "../logo/Beans_logo_dark.svg";
 
@@ -8,16 +6,6 @@ export default class ItemPage extends React.Component {
   render() {
     return (
       <>
-        <div className="banner">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6">
-                <Header />
-              </div>
-            </div>
-            <h1 className="title-big">Our Coffee</h1>
-          </div>
-        </div>
         <section className="shop">
           <div className="container">
             <div className="row">
@@ -50,7 +38,6 @@ export default class ItemPage extends React.Component {
             </div>
           </div>
         </section>
-        <Footer />
       </>
     );
   }
