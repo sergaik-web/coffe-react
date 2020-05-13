@@ -36,9 +36,8 @@ export default class CoffeeSection extends React.Component {
     return (
       <section className="shop">
         <div className="container">
-          {AboutPanel(aboutText, aboutTitle, img)}
-          <div className="line" />
-          {SearchPanel()}
+          <AboutPanel aboutText={aboutText} aboutTitle={aboutTitle} img={img} />
+          <SearchPanel />
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="shop__wrapper">{coffeeItems}</div>

@@ -52,8 +52,11 @@ class PleasurePage extends React.Component {
         />
         <section className="shop">
           <div className="container">
-            {AboutPanel(aboutText, aboutTitle, img)}
-            <div className="line" />
+            <AboutPanel
+              aboutText={aboutText}
+              aboutTitle={aboutTitle}
+              img={img}
+            />
             <div className="row">
               <div className="col-lg-10 offset-lg-1">
                 <div className="shop__wrapper">{goodsItems}</div>

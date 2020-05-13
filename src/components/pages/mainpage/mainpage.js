@@ -52,7 +52,9 @@ class MainPage extends React.Component {
         />
 
         <section className="about">
-          <div className="container">{AboutPanel(aboutText, aboutTitle)}</div>
+          <div className="container">
+            <AboutPanel aboutText={aboutText} aboutTitle={aboutTitle} />
+          </div>
         </section>
         <section className="best">
           <div className="container">
