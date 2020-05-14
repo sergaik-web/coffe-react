@@ -1,2 +1,2 @@
-import { best, goods, coffee } from "./actions";
-export default { best, goods, coffee };
+import { best, goods, coffee, requests } from "./actions";
+export default { best, goods, coffee, requests };

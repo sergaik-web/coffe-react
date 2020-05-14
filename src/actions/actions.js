@@ -19,4 +19,10 @@ const goods = (arr) => {
   };
 };
 
-export { best, coffee, goods };
+const requests = () => {
+  return {
+    type: "REQUESTS",
+  };
+};
+
+export { best, coffee, goods, requests };

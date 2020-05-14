@@ -3,11 +3,21 @@ import img from "../img/coffee_girl.jpg";
 import AboutPanel from "../../about-panel";
 import SearchPanel from "../../search-panel";
 import CoffeeItems from "../coffee-item";
+import Spinner from "../../spinner";
 import { connect } from "react-redux";
+import Hoc from "../../hoc";
+import { coffee, requests } from "../../../actions/actions";
 
 class CoffeeSection extends React.Component {
+  componentDidMount() {
+    this.props.requests();
+    const { service } = this.props;
+    service.getCoffee().then((res) => this.props.coffee(res));
+  }
+
   renderCoffeeItems = (arr) => {
     return arr.map((item, index) => {
+      console.log(item);
       return (
         <CoffeeItems
           id={index}
@@ -44,6 +54,28 @@ class CoffeeSection extends React.Component {
       </div>
     );
 
+    if (this.props.loaded) {
+      return (
+        <section className="shop">
+          <div className="container">
+            <AboutPanel
+              aboutText={aboutText}
+              aboutTitle={aboutTitle}
+              img={img}
+            />
+            <SearchPanel />
+            <div className="row">
+              <div className="col-lg-10 offset-lg-1">
+                <div className="shop__wrapper">
+                  <Spinner />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     return (
       <section className="shop">
         <div className="container">
@@ -63,7 +95,12 @@ class CoffeeSection extends React.Component {
 const mapStateToProps = (state) => {
   return {
     coffeeData: state.coffee,
+    loaded: state.loaded,
   };
 };
 
-export default connect(mapStateToProps)(CoffeeSection);
+const mapDispatchToProps = { coffee, requests };
+
+export default Hoc()(
+  connect(mapStateToProps, mapDispatchToProps)(CoffeeSection)
+);

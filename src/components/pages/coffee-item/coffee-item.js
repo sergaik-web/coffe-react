@@ -7,7 +7,7 @@ class CoffeeItems extends React.Component {
 
   render() {
     const id = this.props.id;
-    const { name, country, url, price, description } = this.props.item;
+    const { name, country, url, price } = this.props.item;
     return (
       <div
         key={id}
