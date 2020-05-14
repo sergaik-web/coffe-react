@@ -21,7 +21,7 @@ export default class Footer extends React.Component {
                   <Link to={"/coffepage"}>Our coffee</Link>
                 </li>
                 <li className="footer__item">
-                  <Link to={"/itempage"}>For your pleasure</Link>
+                  <Link to={"/pleasurepage"}>For your pleasure</Link>
                 </li>
               </ul>
             </div>

@@ -1,44 +1,57 @@
 import React from "react";
-import coffeGirl from "../img/coffee_girl.jpg";
 import beanslogodarck from "../logo/Beans_logo_dark.svg";
+import { connect } from "react-redux";
 
-export default class ItemPage extends React.Component {
+class ItemPage extends React.Component {
   render() {
-    return (
-      <>
-        <section className="shop">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-5 offset-1">
-                <img className="shop__girl" src={coffeGirl} alt="coffee_item" />
-              </div>
-              <div className="col-lg-4">
-                <div className="title">About it</div>
-                <img
-                  className="beanslogo"
-                  src={beanslogodarck}
-                  alt="Beans logo"
-                />
-                <div className="shop__point">
-                  <span>Country:</span>
-                  Brazil
+    const item = this.props.coffeeData.find(
+      (item) => item.name === this.props.itemId
+    );
+
+    if (item) {
+      const { name, country, url, price, description } = item;
+      return (
+        <>
+          <section className="shop">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-5 offset-1">
+                  <img className="shop__img" src={url} alt="coffee_item" />
                 </div>
-                <div className="shop__point">
-                  <span>Description:</span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-                <div className="shop__point">
-                  <span>Price:</span>
-                  <span className="shop__point-price">16.99$</span>
+                <div className="col-lg-4">
+                  <div className="title">{name}</div>
+                  <img
+                    className="beanslogo"
+                    src={beanslogodarck}
+                    alt="Beans logo"
+                  />
+                  <div className="shop__point">
+                    <span>Country:</span>
+                    {country}
+                  </div>
+                  <div className="shop__point">
+                    <span>Description:</span>
+                    {description}
+                  </div>
+                  <div className="shop__point">
+                    <span>Price:</span>
+                    <span className="shop__point-price">{price}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </>
-    );
+          </section>
+        </>
+      );
+    }
+    return <div>sdasd</div>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    coffeeData: state.coffee,
+  };
+};
+
+export default connect(mapStateToProps)(ItemPage);

@@ -8,7 +8,17 @@ import { connect } from "react-redux";
 class CoffeeSection extends React.Component {
   renderCoffeeItems = (arr) => {
     return arr.map((item, index) => {
-      return <CoffeeItems key={index} item={item} />;
+      return (
+        <CoffeeItems
+          id={index}
+          key={index}
+          item={item}
+          onItemSelected={(itemId, name) => {
+            console.log(name);
+            this.props.history.push(`/coffepage/${name}`);
+          }}
+        />
+      );
     });
   };
 

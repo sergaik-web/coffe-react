@@ -22,7 +22,13 @@ class CoffeePage extends React.Component {
         <Header mainClassName={"banner"} mainTitle={"Our Coffee"} />
         <Switch>
           <Route path={"/coffepage/"} exact component={CoffeeSection} />
-          <Route path={"/coffepage/1"} render={() => <ItemPage />} />
+          <Route
+            path={"/coffepage/:id"}
+            render={({ match }) => {
+              const { id } = match.params;
+              return <ItemPage itemId={id} />;
+            }}
+          />
         </Switch>
         <Footer />
       </>
