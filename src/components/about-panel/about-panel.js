@@ -7,7 +7,7 @@ const AboutPanel = ({ aboutText, aboutTitle, img = "" }) => {
     return (
       <>
         <div className="row">
-          <div className="col-lg-4 offset-2">
+          <div className="col-lg-4">
             <img className="shop__girl" src={img} alt="girl" />
           </div>
           <div className="col-lg-4">

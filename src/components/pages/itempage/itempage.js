@@ -2,14 +2,20 @@ import React from "react";
 import beanslogodarck from "../logo/Beans_logo_dark.svg";
 import { connect } from "react-redux";
 import Spinner from "../../spinner";
-import { coffee, requests } from "../../../actions/actions";
+import { coffee, requests, error } from "../../../actions/actions";
 import Hoc from "../../hoc";
+import Error from "../../error";
 
 class ItemPage extends React.Component {
   componentDidMount() {
     this.props.requests();
     const { service } = this.props;
     service.getCoffee().then((res) => this.props.coffee(res));
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.props.error();
+    console.log(error, errorInfo);
   }
 
   render() {
@@ -19,6 +25,10 @@ class ItemPage extends React.Component {
           <Spinner />
         </section>
       );
+    }
+
+    if (this.props.errored) {
+      return <Error />;
     }
 
     const item = this.props.coffeeData.find(
@@ -66,9 +76,10 @@ const mapStateToProps = (state) => {
   return {
     coffeeData: state.coffee,
     loaded: state.loaded,
+    errored: state.error,
   };
 };
 
-const mapDispatchToProps = { coffee, requests };
+const mapDispatchToProps = { coffee, requests, error };
 
 export default Hoc()(connect(mapStateToProps, mapDispatchToProps)(ItemPage));

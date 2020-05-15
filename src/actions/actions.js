@@ -25,4 +25,10 @@ const requests = () => {
   };
 };
 
-export { best, coffee, goods, requests };
+const error = () => {
+  return {
+    type: "ERROR",
+  };
+};
+
+export { best, coffee, goods, requests, error };

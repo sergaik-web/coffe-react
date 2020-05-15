@@ -3,18 +3,26 @@ import Header from "../../header";
 import Footer from "../../footer";
 import AboutPanel from "../../about-panel";
 import CoffeeItems from "../coffee-item";
-import { best } from "../../../actions/actions";
+import { best, requests, error } from "../../../actions/actions";
 import { connect } from "react-redux";
 import Hoc from "../../hoc";
 
 import "./mainpage.sass";
+import Spinner from "../../spinner";
+import Error from "../../error";
 
 class MainPage extends React.Component {
   componentDidMount() {
+    this.props.requests();
     const { service } = this.props;
     service.getBestsellers().then((res) => {
       this.props.best(res);
     });
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.props.error();
+    console.log(error, errorInfo);
   }
 
   renderBestsItems(arr) {
@@ -34,6 +42,18 @@ class MainPage extends React.Component {
   }
 
   render() {
+    if (this.props.loaded) {
+      return (
+        <section className="shop">
+          <Spinner />
+        </section>
+      );
+    }
+
+    if (this.props.errored) {
+      return <Error />;
+    }
+
     const bestsellersItem = this.renderBestsItems(this.props.bestsellersData);
     const aboutTitle = "About Us";
     const aboutText = (
@@ -85,9 +105,11 @@ class MainPage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     bestsellersData: state.bestsellers,
+    loaded: state.loaded,
+    errored: state.error,
   };
 };
 
-const mapDispatchToProps = { best };
+const mapDispatchToProps = { best, requests, error };
 
 export default Hoc()(connect(mapStateToProps, mapDispatchToProps)(MainPage));

@@ -4,16 +4,24 @@ import Footer from "../../footer";
 import CoffeeItems from "../coffee-item";
 import AboutPanel from "../../about-panel";
 import { connect } from "react-redux";
-import { goods } from "../../../actions/actions";
+import { goods, requests, error } from "../../../actions/actions";
 import Hoc from "../../hoc";
 import img from "../img/pleasure_item.jpg";
 
 import "./pleasurepage.sass";
+import Spinner from "../../spinner";
+import Error from "../../error";
 
 class PleasurePage extends React.Component {
   componentDidMount() {
+    this.props.requests();
     const { service } = this.props;
     service.getGoods().then((res) => this.props.goods(res));
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.props.error();
+    console.log(error, errorInfo);
   }
 
   renderCoffeeItems(arr) {
@@ -23,6 +31,18 @@ class PleasurePage extends React.Component {
   }
 
   render() {
+    if (this.props.loaded) {
+      return (
+        <section className="shop">
+          <Spinner />
+        </section>
+      );
+    }
+
+    if (this.props.errored) {
+      return <Error />;
+    }
+
     const goodsItems = this.renderCoffeeItems(this.props.goodsItem);
     const aboutTitle = "About our pleasure";
     const aboutText = (
@@ -73,10 +93,12 @@ class PleasurePage extends React.Component {
 const mapStateToProps = (state) => {
   return {
     goodsItem: state.goods,
+    loaded: state.loaded,
+    errored: state.error,
   };
 };
 
-const mapDispatchToProps = { goods };
+const mapDispatchToProps = { goods, requests, error };
 
 export default Hoc()(
   connect(mapStateToProps, mapDispatchToProps)(PleasurePage)

@@ -14,6 +14,13 @@ const reducer = (state = initialState, action) => {
         loaded: true,
       };
 
+    case "ERROR":
+      return {
+        ...state,
+        loaded: false,
+        error: true,
+      };
+
     case "BESTSELLERS_LOAD":
       return {
         ...state,
