@@ -1,15 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import Header from "../../header";
 import Footer from "../../footer";
-import AboutPanel from "../../about-panel";
-import CoffeeItems from "../coffee-item";
-import { best, requests, error } from "../../../actions/actions";
-import { connect } from "react-redux";
-import Hoc from "../../hoc";
-
-import "./mainpage.sass";
-import Spinner from "../../spinner";
 import Error from "../../error";
+import CoffeeItems from "../coffee-item";
+import AboutPanel from "../../about-panel";
+import Spinner from "../../spinner";
+import Hoc from "../../hoc";
+import { best, requests, error } from "../../../actions/actions";
+import "./mainpage.sass";
 
 class MainPage extends React.Component {
   componentDidMount() {

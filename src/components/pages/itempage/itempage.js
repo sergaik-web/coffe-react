@@ -1,10 +1,10 @@
 import React from "react";
-import beanslogodarck from "../logo/Beans_logo_dark.svg";
 import { connect } from "react-redux";
-import Spinner from "../../spinner";
 import { coffee, requests, error } from "../../../actions/actions";
 import Hoc from "../../hoc";
+import Spinner from "../../spinner";
 import Error from "../../error";
+import beanslogodarck from "../logo/Beans_logo_dark.svg";
 
 class ItemPage extends React.Component {
   componentDidMount() {

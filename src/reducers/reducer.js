@@ -4,6 +4,8 @@ const initialState = {
   goods: [],
   loaded: true,
   error: false,
+  filter: "",
+  search: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +42,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         loaded: false,
         goods: action.payload,
+      };
+
+    case "SET_FILTER":
+      return {
+        ...state,
+        filter: action.value,
+      };
+
+    case "SEARCH":
+      console.log(action.value);
+      return {
+        ...state,
+        search: action.value,
       };
 
     default:

@@ -1,2 +1,10 @@
-import { best, goods, coffee, requests, error } from "./actions";
-export default { best, goods, coffee, requests, error };
+import {
+  best,
+  goods,
+  coffee,
+  requests,
+  error,
+  setFilter,
+  search,
+} from "./actions";
+export default { best, goods, coffee, requests, error, setFilter, search };

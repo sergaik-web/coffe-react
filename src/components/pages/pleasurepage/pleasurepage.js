@@ -1,16 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import Header from "../../header";
 import Footer from "../../footer";
 import CoffeeItems from "../coffee-item";
-import AboutPanel from "../../about-panel";
-import { connect } from "react-redux";
-import { goods, requests, error } from "../../../actions/actions";
-import Hoc from "../../hoc";
-import img from "../img/pleasure_item.jpg";
-
-import "./pleasurepage.sass";
-import Spinner from "../../spinner";
 import Error from "../../error";
+import Spinner from "../../spinner";
+import AboutPanel from "../../about-panel";
+import Hoc from "../../hoc";
+import { goods, requests, error } from "../../../actions/actions";
+import img from "../img/pleasure_item.jpg";
+import "./pleasurepage.sass";
 
 class PleasurePage extends React.Component {
   componentDidMount() {

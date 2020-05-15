@@ -31,4 +31,18 @@ const error = () => {
   };
 };
 
-export { best, coffee, goods, requests, error };
+const setFilter = (value) => {
+  return {
+    type: "SET_FILTER",
+    value,
+  };
+};
+
+const search = (value) => {
+  return {
+    type: "SEARCH",
+    value,
+  };
+};
+
+export { best, coffee, goods, requests, error, setFilter, search };

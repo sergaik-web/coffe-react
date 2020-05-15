@@ -37,7 +37,7 @@
             width: 180px
             height: 30px 
             box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25)
-            border: none
+            border: 1px solid saddlebrown
             border-radius: 4px
             font-size: 12px
             padding: 0 15px
@@ -46,24 +46,29 @@
     &__filter
         display: flex
         align-items: center
-        justify-content: space-between
+        justify-content: space-evenly
         &-label 
             margin-right: 35px
-        &-btn 
-            width: 75px 
+        &-btn
             height: 30px
             background-color: #fff
-            border: none
+            border: 1px solid saddlebrown
             box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25)
             font-size: 12px
             outline: none
             cursor: pointer
             &:first-child
-                border-radius: 4px 0px 0px 4px
+                border-radius: 4px 0 0 4px
             &:last-child
-                border-radius: 0px 4px 4px 0px
+                border-radius: 0 4px 4px 0
+
             &:focus
                 outline: none
+                background-color: saddlebrown
+                color: white
+            &:hover
+                background-color: saddlebrown
+                color: white
     &__wrapper
         display: flex 
         flex-wrap: wrap

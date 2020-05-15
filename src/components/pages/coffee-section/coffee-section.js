@@ -16,19 +16,26 @@ class CoffeeSection extends React.Component {
   }
 
   renderCoffeeItems = (arr) => {
+    const search = this.props.search;
+    console.log(search);
+    const filter = this.props.filter;
     return arr.map((item, index) => {
-      console.log(item);
-      return (
-        <CoffeeItems
-          id={index}
-          key={index}
-          item={item}
-          onItemSelected={(itemId, name) => {
-            console.log(name);
-            this.props.history.push(`/coffepage/${name}`);
-          }}
-        />
-      );
+      if (
+        item.country.includes(filter) &&
+        item.name.toLowerCase().includes(search.toLowerCase())
+      ) {
+        return (
+          <CoffeeItems
+            id={index}
+            key={index}
+            item={item}
+            onItemSelected={(itemId, name) => {
+              console.log(name);
+              this.props.history.push(`/coffepage/${name}`);
+            }}
+          />
+        );
+      }
     });
   };
 
@@ -93,9 +100,12 @@ class CoffeeSection extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     coffeeData: state.coffee,
     loaded: state.loaded,
+    filter: state.filter,
+    search: state.search,
   };
 };
 
