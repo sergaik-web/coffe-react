@@ -9,6 +9,7 @@ import Spinner from "../../spinner";
 import Hoc from "../../hoc";
 import { best, requests, error } from "../../../actions/actions";
 import "./mainpage.sass";
+import db from "../../../services/db.json";
 
 class MainPage extends React.Component {
   componentDidMount() {

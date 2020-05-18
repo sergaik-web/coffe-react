@@ -19,7 +19,11 @@ class ItemPage extends React.Component {
   }
 
   render() {
-    if (this.props.loaded) {
+    const item = this.props.coffeeData.find(
+      (item) => item.name === this.props.itemId
+    );
+
+    if (this.props.loaded || !item) {
       return (
         <section className="shop">
           <Spinner />
@@ -30,10 +34,6 @@ class ItemPage extends React.Component {
     if (this.props.errored) {
       return <Error />;
     }
-
-    const item = this.props.coffeeData.find(
-      (item) => item.name === this.props.itemId
-    );
 
     const { name, country, url, price, description } = item;
     return (

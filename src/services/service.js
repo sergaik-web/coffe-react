@@ -1,23 +1,19 @@
-export default class Services {
-  STATIC_URL = "http://localhost:3001";
+import db from "./db.json";
 
+export default class Services {
   async getDataDb(url) {
-    const res = await fetch(`${this.STATIC_URL}${url}`);
-    if (!res.ok) {
-      throw new Error((err) => `Произошла ошибка ${err}`);
-    }
-    return await res.json();
+    return await db[url];
   }
 
   async getBestsellers() {
-    return await this.getDataDb("/bestsellers");
+    return await this.getDataDb("bestsellers");
   }
 
   async getCoffee() {
-    return await this.getDataDb("/coffee");
+    return await this.getDataDb("coffee");
   }
 
   async getGoods() {
-    return await this.getDataDb("/goods");
+    return await this.getDataDb("goods");
   }
 }
